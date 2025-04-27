@@ -149,7 +149,17 @@ export function FinanceProvider({ children }: { children: React.ReactNode }) {
 
   const getBudgetProgress = () => {
     const categorySpending = getCategorySpending('month');
-    const spendingMap: Record<Category, number> = {};
+    const spendingMap: Record<Category, number> = {
+      Food: 0,
+      Transport: 0,
+      Entertainment: 0,
+      Bills: 0,
+      Housing: 0,
+      Shopping: 0,
+      Health: 0,
+      Income: 0,
+      Others: 0
+    };
     categorySpending.forEach(cs => {
       spendingMap[cs.category] = cs.amount;
     });

@@ -25,7 +25,7 @@ export const getCategoryColor = (category: Category): string => {
   return categories.find(c => c.name === category)?.color || "#9CA3AF";
 };
 
-// Initial mock transactions with Indian context
+// Initial mock transactions
 export const initialTransactions: Transaction[] = [
   {
     id: generateId(),
@@ -85,7 +85,7 @@ export const initialTransactions: Transaction[] = [
   }
 ];
 
-// Initial monthly budget allocation (in Indian Rupees)
+// Initial monthly budget allocation
 export const initialBudgets: CategoryBudget[] = [
   { category: "Food", amount: 25000 },
   { category: "Transport", amount: 8000 },
@@ -102,7 +102,7 @@ export const formatCurrency = (amount: number): string => {
   return new Intl.NumberFormat('en-IN', {
     style: 'currency',
     currency: 'INR',
-    maximumFractionDigits: 0 // Remove decimal places for INR
+    maximumFractionDigits: 0
   }).format(amount);
 };
 

@@ -1,73 +1,97 @@
-# Welcome to your Lovable project
+# Personal Finance Visualizer
 
-## Project info
+A modern, responsive personal finance tracking web application built with Next.js, React, shadcn/ui, Recharts, and MongoDB.
 
-**URL**: https://lovable.dev/projects/37e334d5-bd80-4ebf-b351-fca54d9bb601
+Track your expenses, manage budgets, and get clear visual insights into your spending habits.
 
-## How can I edit this code?
+---
 
-There are several ways of editing your application.
+## 🚀 Project Structure
 
-**Use Lovable**
+```
+/finance-visualizer
+  /frontend   → Frontend code (Next.js, React, shadcn/ui)
+  /backend    → Backend API (Next.js API routes, MongoDB, Mongoose)
+```
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/37e334d5-bd80-4ebf-b351-fca54d9bb601) and start prompting.
+---
 
-Changes made via Lovable will be committed automatically to this repo.
+## 📦 Tech Stack
 
-**Use your preferred IDE**
+- Frontend: Next.js 14 (App Router) + React + shadcn/ui + Recharts + Tailwind CSS
+- Backend: Next.js API Routes + MongoDB (Atlas) + Mongoose
+- Forms: react-hook-form + zod
+- Charts: Recharts
+- Animations: Framer Motion
+- Styling: Tailwind CSS
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+---
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## 🛠️ Setup Instructions
 
-Follow these steps:
+### 1. Clone the repository
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+```bash
+git clone https://github.com/yourusername/finance-visualizer.git
+cd finance-visualizer
+```
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+---
 
-# Step 3: Install the necessary dependencies.
-npm i
+### 2. Install and run Frontend
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+```bash
+cd frontend
+npm install
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+- Frontend will run on: `http://localhost:8080/`
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+---
 
-**Use GitHub Codespaces**
+### 3. Install and run Backend
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+```bash
+cd backend
+npm install
+npm run dev
+```
 
-## What technologies are used for this project?
+- Backend API will run on: `http://localhost:3000` (or configured port)
 
-This project is built with:
+---
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+### 4. Environment Variables
 
-## How can I deploy this project?
+Create a `.env.local` file in both `frontend/` and `backend/` folders.
 
-Simply open [Lovable](https://lovable.dev/projects/37e334d5-bd80-4ebf-b351-fca54d9bb601) and click on Share -> Publish.
+#### For Frontend (`frontend/.env.local`):
 
-## Can I connect a custom domain to my Lovable project?
+```bash
+NEXT_PUBLIC_API_URL=http://localhost:3000/api
+```
 
-Yes, you can!
+#### For Backend (`backend/.env.local`):
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+```bash
+MONGODB_URI=your_mongodb_connection_string
+```
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+---
+
+## ✨ Features
+
+- Add, edit, delete transactions
+- View transaction list (modern cards or table)
+- Monthly expenses bar chart
+- Category-wise expense pie chart
+- Budget setting and tracking
+- Budget vs actual spending comparison
+- Simple smart spending insights
+- Fully responsive design
+- Clean and professional UI/UX
+- Form validation (client and server side)
+- Error handling, loading states, and empty states
+
+---
