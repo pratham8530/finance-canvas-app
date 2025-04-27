@@ -1,4 +1,3 @@
-
 import { Transaction, Category, CategoryBudget } from "@/types";
 import { format, subDays } from "date-fns";
 
@@ -25,83 +24,84 @@ export const getCategoryColor = (category: Category): string => {
   return categories.find(c => c.name === category)?.color || "#9CA3AF";
 };
 
-// Initial mock transactions
+// Initial mock transactions with Indian context
 export const initialTransactions: Transaction[] = [
   {
     id: generateId(),
-    amount: -45.99,
+    amount: -2500,
     date: subDays(new Date(), 1),
     description: "Grocery Shopping",
     category: "Food",
   },
   {
     id: generateId(),
-    amount: -12.50,
+    amount: -1000,
     date: subDays(new Date(), 2),
-    description: "Bus Pass",
+    description: "Metro Card Recharge",
     category: "Transport",
   },
   {
     id: generateId(),
-    amount: -25.00,
+    amount: -1500,
     date: subDays(new Date(), 3),
-    description: "Movie Tickets",
+    description: "Movie Night",
     category: "Entertainment",
   },
   {
     id: generateId(),
-    amount: -85.50,
+    amount: -3500,
     date: subDays(new Date(), 4),
-    description: "Electric Bill",
+    description: "Electricity Bill",
     category: "Bills",
   },
   {
     id: generateId(),
-    amount: -950.00,
+    amount: -25000,
     date: subDays(new Date(), 5),
     description: "Monthly Rent",
     category: "Housing",
   },
   {
     id: generateId(),
-    amount: 1750.00,
+    amount: 250000,
     date: subDays(new Date(), 5),
-    description: "Salary",
+    description: "Monthly Salary",
     category: "Income",
   },
   {
     id: generateId(),
-    amount: -34.99,
+    amount: -2999,
     date: subDays(new Date(), 6),
-    description: "T-shirt",
+    description: "New Shirt",
     category: "Shopping",
   },
   {
     id: generateId(),
-    amount: -65.00,
+    amount: -1200,
     date: subDays(new Date(), 7),
     description: "Doctor Visit",
     category: "Health",
   }
 ];
 
-// Initial monthly budget allocation
+// Initial monthly budget allocation (in Indian Rupees)
 export const initialBudgets: CategoryBudget[] = [
-  { category: "Food", amount: 300 },
-  { category: "Transport", amount: 150 },
-  { category: "Entertainment", amount: 200 },
-  { category: "Bills", amount: 350 },
-  { category: "Housing", amount: 1200 },
-  { category: "Shopping", amount: 150 },
-  { category: "Health", amount: 100 },
-  { category: "Others", amount: 100 }
+  { category: "Food", amount: 15000 },
+  { category: "Transport", amount: 5000 },
+  { category: "Entertainment", amount: 8000 },
+  { category: "Bills", amount: 12000 },
+  { category: "Housing", amount: 30000 },
+  { category: "Shopping", amount: 10000 },
+  { category: "Health", amount: 5000 },
+  { category: "Others", amount: 5000 }
 ];
 
-// Format currency
+// Format currency to Indian Rupees
 export const formatCurrency = (amount: number): string => {
-  return new Intl.NumberFormat('en-US', {
+  return new Intl.NumberFormat('en-IN', {
     style: 'currency',
-    currency: 'USD'
+    currency: 'INR',
+    maximumFractionDigits: 0 // Remove decimal places for INR
   }).format(amount);
 };
 

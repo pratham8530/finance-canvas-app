@@ -1,4 +1,3 @@
-
 import React, { createContext, useContext, useState, useMemo } from 'react';
 import { Transaction, Category, CategoryBudget, MonthlySpending, CategorySpending } from '@/types';
 import { initialTransactions, initialBudgets, generateId } from '@/utils/mockData';
@@ -52,7 +51,6 @@ export function FinanceProvider({ children }: { children: React.ReactNode }) {
     );
   };
 
-  // Get current month's expenses
   const getCurrentMonthExpenses = () => {
     const now = new Date();
     const start = startOfMonth(now);
@@ -66,7 +64,6 @@ export function FinanceProvider({ children }: { children: React.ReactNode }) {
       .reduce((sum, t) => sum + Math.abs(t.amount), 0);
   };
 
-  // Get current month's income
   const getCurrentMonthIncome = () => {
     const now = new Date();
     const start = startOfMonth(now);
@@ -80,7 +77,6 @@ export function FinanceProvider({ children }: { children: React.ReactNode }) {
       .reduce((sum, t) => sum + t.amount, 0);
   };
 
-  // Get spending by category
   const getCategorySpending = (period: 'month' | 'year' = 'month') => {
     const now = new Date();
     let start: Date, end: Date;
@@ -93,7 +89,17 @@ export function FinanceProvider({ children }: { children: React.ReactNode }) {
       end = new Date(now.getFullYear(), 11, 31);
     }
     
-    const categorySpending: Record<Category, number> = {} as Record<Category, number>;
+    const categorySpending: Record<Category, number> = {
+      Food: 0,
+      Transport: 0,
+      Entertainment: 0,
+      Bills: 0,
+      Housing: 0,
+      Shopping: 0,
+      Health: 0,
+      Income: 0,
+      Others: 0
+    };
     
     transactions
       .filter(t => 
@@ -110,10 +116,10 @@ export function FinanceProvider({ children }: { children: React.ReactNode }) {
         category: category as Category,
         amount
       }))
+      .filter(item => item.amount > 0)
       .sort((a, b) => b.amount - a.amount);
   };
 
-  // Get monthly spending for the last X months
   const getMonthlySpending = (months: number = 6) => {
     const result: MonthlySpending[] = [];
     const now = new Date();
@@ -139,7 +145,6 @@ export function FinanceProvider({ children }: { children: React.ReactNode }) {
     return result.reverse();
   };
 
-  // Get budget progress
   const getBudgetProgress = () => {
     const categorySpending = getCategorySpending('month');
     const spendingMap: Record<Category, number> = {};
