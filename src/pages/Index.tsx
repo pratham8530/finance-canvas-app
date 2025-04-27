@@ -183,15 +183,19 @@ const Index = () => {
           />
         </div>
 
-        {/* Charts */}
-        <div className="grid gap-4 md:grid-cols-2">
+        {/* Monthly Expenses Chart */}
+        <div>
           <MonthlyExpensesChart transactions={transactions} />
-          <CategoryChart transactions={transactions} />
         </div>
 
-        {/* Budget progress and recent transactions */}
+        {/* Category Chart and Budget Progress side by side */}
         <div className="grid gap-4 md:grid-cols-2">
+          <CategoryChart transactions={transactions} />
           <BudgetProgressList data={budgetComparisonData} />
+        </div>
+
+        {/* Recent Transactions */}
+        <div>
           <RecentTransactions transactions={transactions} />
         </div>
       </div>
