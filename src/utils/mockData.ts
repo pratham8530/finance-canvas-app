@@ -1,3 +1,4 @@
+
 import { Transaction, Category, CategoryBudget } from "@/types";
 import { format, subDays } from "date-fns";
 
@@ -28,35 +29,35 @@ export const getCategoryColor = (category: Category): string => {
 export const initialTransactions: Transaction[] = [
   {
     id: generateId(),
-    amount: -2500,
+    amount: -8500,
     date: subDays(new Date(), 1),
-    description: "Grocery Shopping",
+    description: "Grocery Shopping at DMart",
     category: "Food",
   },
   {
     id: generateId(),
-    amount: -1000,
+    amount: -3000,
     date: subDays(new Date(), 2),
     description: "Metro Card Recharge",
     category: "Transport",
   },
   {
     id: generateId(),
-    amount: -1500,
+    amount: -4500,
     date: subDays(new Date(), 3),
-    description: "Movie Night",
+    description: "PVR Movies with Family",
     category: "Entertainment",
   },
   {
     id: generateId(),
-    amount: -3500,
+    amount: -7500,
     date: subDays(new Date(), 4),
     description: "Electricity Bill",
     category: "Bills",
   },
   {
     id: generateId(),
-    amount: -25000,
+    amount: -45000,
     date: subDays(new Date(), 5),
     description: "Monthly Rent",
     category: "Housing",
@@ -70,30 +71,30 @@ export const initialTransactions: Transaction[] = [
   },
   {
     id: generateId(),
-    amount: -2999,
+    amount: -15000,
     date: subDays(new Date(), 6),
-    description: "New Shirt",
+    description: "Clothes Shopping at Mall",
     category: "Shopping",
   },
   {
     id: generateId(),
-    amount: -1200,
+    amount: -3500,
     date: subDays(new Date(), 7),
-    description: "Doctor Visit",
+    description: "Doctor Consultation",
     category: "Health",
   }
 ];
 
 // Initial monthly budget allocation (in Indian Rupees)
 export const initialBudgets: CategoryBudget[] = [
-  { category: "Food", amount: 15000 },
-  { category: "Transport", amount: 5000 },
-  { category: "Entertainment", amount: 8000 },
-  { category: "Bills", amount: 12000 },
-  { category: "Housing", amount: 30000 },
-  { category: "Shopping", amount: 10000 },
-  { category: "Health", amount: 5000 },
-  { category: "Others", amount: 5000 }
+  { category: "Food", amount: 25000 },
+  { category: "Transport", amount: 8000 },
+  { category: "Entertainment", amount: 15000 },
+  { category: "Bills", amount: 20000 },
+  { category: "Housing", amount: 50000 },
+  { category: "Shopping", amount: 20000 },
+  { category: "Health", amount: 10000 },
+  { category: "Others", amount: 15000 }
 ];
 
 // Format currency to Indian Rupees
