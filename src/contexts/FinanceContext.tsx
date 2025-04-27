@@ -1,6 +1,7 @@
+
 import React, { createContext, useContext, useState, useMemo } from 'react';
 import { Transaction, Category, CategoryBudget, MonthlySpending, CategorySpending } from '@/types';
-import { initialTransactions, initialBudgets, generateId } from '@/utils/mockData';
+import { initialTransactions, initialBudgets, generateId, categories } from '@/utils/mockData';
 import { startOfMonth, endOfMonth, isWithinInterval, format } from 'date-fns';
 
 interface FinanceContextType {
@@ -89,6 +90,7 @@ export function FinanceProvider({ children }: { children: React.ReactNode }) {
       end = new Date(now.getFullYear(), 11, 31);
     }
     
+    // Initialize with all category keys to fix the TypeScript error
     const categorySpending: Record<Category, number> = {
       Food: 0,
       Transport: 0,
