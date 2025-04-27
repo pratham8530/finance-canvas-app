@@ -21,6 +21,7 @@ import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Transaction, Category } from '@/types';
 import { categories } from '@/utils/mockData';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 // Define schema for transaction form
 const transactionSchema = z.object({
@@ -56,9 +57,40 @@ export function TransactionForm({ onSubmit, defaultValues, isEdit = false }: Tra
     }
   });
 
+  // Track if we're adding income or expense
+  const [transactionType, setTransactionType] = React.useState<'income' | 'expense'>(
+    defaultValues?.amount && defaultValues.amount > 0 ? 'income' : 'expense'
+  );
+
+  // Handle submit with correct amount sign
+  const handleFormSubmit = (values: TransactionFormValues) => {
+    // Convert amount to negative if it's an expense
+    const amount = transactionType === 'expense' 
+      ? -Math.abs(values.amount)
+      : Math.abs(values.amount);
+    
+    onSubmit({
+      ...values,
+      amount
+    });
+  };
+
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+      <form onSubmit={form.handleSubmit(handleFormSubmit)} className="space-y-6">
+        {/* Transaction type selector */}
+        <Tabs
+          defaultValue={transactionType}
+          value={transactionType}
+          onValueChange={(value) => setTransactionType(value as 'income' | 'expense')}
+          className="w-full"
+        >
+          <TabsList className="grid w-full grid-cols-2">
+            <TabsTrigger value="expense">Expense</TabsTrigger>
+            <TabsTrigger value="income">Income</TabsTrigger>
+          </TabsList>
+        </Tabs>
+
         <FormField
           control={form.control}
           name="amount"
@@ -73,9 +105,11 @@ export function TransactionForm({ onSubmit, defaultValues, isEdit = false }: Tra
                     className="pl-8" 
                     {...field}
                     onChange={(e) => {
-                      const value = e.target.value.replace(/[^-0-9.]/g, '');
+                      // Only allow numbers and decimal points
+                      const value = e.target.value.replace(/[^0-9.]/g, '');
                       field.onChange(value);
                     }}
+                    value={field.value === 0 ? '' : Math.abs(field.value)}
                   />
                 </div>
               </FormControl>
@@ -147,6 +181,7 @@ export function TransactionForm({ onSubmit, defaultValues, isEdit = false }: Tra
               <Select 
                 onValueChange={field.onChange} 
                 defaultValue={field.value}
+                value={field.value}
               >
                 <FormControl>
                   <SelectTrigger>

@@ -2,6 +2,7 @@
 import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
+import { ArrowDown, ArrowUp } from 'lucide-react';
 
 interface StatisticCardProps {
   title: string;
@@ -23,12 +24,16 @@ export function StatisticCard({ title, value, icon, trend, className }: Statisti
             <p className="text-sm font-medium text-muted-foreground">{title}</p>
             <h3 className="text-2xl font-bold mt-2">{value}</h3>
             {trend && (
-              <p className={cn(
-                "text-xs mt-1",
+              <div className={cn(
+                "flex items-center text-xs mt-1 space-x-1",
                 trend.positive ? "text-green-500" : "text-red-500"
               )}>
-                {trend.positive ? "+" : ""}{trend.value}
-              </p>
+                {trend.positive ? 
+                  <ArrowDown className="h-3 w-3" /> : 
+                  <ArrowUp className="h-3 w-3" />
+                }
+                <span>{trend.value}</span>
+              </div>
             )}
           </div>
           {icon && (

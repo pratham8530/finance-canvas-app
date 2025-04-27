@@ -16,9 +16,10 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { formatCurrency, formatDate } from '@/utils/mockData';
+import { formatCurrency, formatDate, getCategoryColor } from '@/utils/mockData';
 import { Transaction } from '@/types';
 import { MoreVertical, Edit, Trash2 } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 interface TransactionsTableProps {
   transactions: Transaction[];
@@ -29,8 +30,9 @@ interface TransactionsTableProps {
 export function TransactionsTable({ transactions, onEdit, onDelete }: TransactionsTableProps) {
   if (transactions.length === 0) {
     return (
-      <div className="text-center py-12">
+      <div className="text-center py-12 border rounded-md bg-muted/10">
         <p className="text-muted-foreground">No transactions found</p>
+        <p className="text-xs text-muted-foreground mt-1">Try adjusting your filters or add a new transaction</p>
       </div>
     );
   }
@@ -53,11 +55,19 @@ export function TransactionsTable({ transactions, onEdit, onDelete }: Transactio
               <TableCell className="font-medium">{formatDate(transaction.date)}</TableCell>
               <TableCell>{transaction.description}</TableCell>
               <TableCell>
-                <Badge variant="outline">{transaction.category}</Badge>
+                <Badge 
+                  variant="outline" 
+                  style={{
+                    borderColor: getCategoryColor(transaction.category),
+                    backgroundColor: `${getCategoryColor(transaction.category)}10`
+                  }}
+                >
+                  {transaction.category}
+                </Badge>
               </TableCell>
               <TableCell className={
                 cn("text-right font-medium",
-                transaction.amount > 0 ? "text-green-600" : "")
+                transaction.amount > 0 ? "text-green-600" : "text-red-600")
               }>
                 {formatCurrency(transaction.amount)}
               </TableCell>
@@ -91,5 +101,3 @@ export function TransactionsTable({ transactions, onEdit, onDelete }: Transactio
     </div>
   );
 }
-
-import { cn } from '@/lib/utils';
